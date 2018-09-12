@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="TableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="199.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里视图可以随便自定义(约束要向上添加)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CU-lc-qfI">
+                        <rect key="frame" x="26.5" y="10" width="267.5" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="TJM-wk-Lu8"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="vsm-Jd-JSU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.81176470590000005" green="0.031372549020000001" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里视图可以随便自定义(约束要向上添加)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZ6-dH-Q7q">
+                        <rect key="frame" x="26.5" y="174" width="267.5" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="0F2-5m-5sY"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="dy4-bQ-Dmh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.16862745100000001" green="0.61960784310000006" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="otD-ZO-VxL">
+                        <rect key="frame" x="30" y="35" width="260" height="129"/>
+                        <color key="backgroundColor" red="0.62352941179999999" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="otD-ZO-VxL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="2ft-wr-Otc"/>
+                    <constraint firstItem="NZ6-dH-Q7q" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7q9-zH-iRL"/>
+                    <constraint firstItem="9CU-lc-qfI" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="S9d-dJ-4bE"/>
+                    <constraint firstItem="NZ6-dH-Q7q" firstAttribute="top" secondItem="otD-ZO-VxL" secondAttribute="bottom" constant="10" id="Sgj-ND-rKC"/>
+                    <constraint firstItem="9CU-lc-qfI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="WQA-Dw-j7j"/>
+                    <constraint firstItem="otD-ZO-VxL" firstAttribute="top" secondItem="9CU-lc-qfI" secondAttribute="bottom" constant="10" id="b4q-Na-Qeq"/>
+                    <constraint firstAttribute="bottom" secondItem="NZ6-dH-Q7q" secondAttribute="bottom" constant="10" id="e66-Dz-few"/>
+                    <constraint firstAttribute="trailing" secondItem="otD-ZO-VxL" secondAttribute="trailing" constant="30" id="q9H-Je-PJb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="listView" destination="otD-ZO-VxL" id="v9I-eI-sQN"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
