@@ -120,6 +120,7 @@
             [array addObject:self.imageArray[self.cellTag - 100][i]];
         }
         photoVC.imageArray = array;
+        photoVC.locationView = self.imageTag - 901;
         [self.navigationController pushViewController:photoVC animated:YES];
     }
 }

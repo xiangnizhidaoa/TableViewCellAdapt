@@ -10,6 +10,8 @@
 
 @interface PhotoViewController : UIViewController
 
-@property (nonatomic,strong) NSArray *imageArray;
+@property (nonatomic,strong) NSArray *imageArray;//需要展示图片的数组
+
+@property (nonatomic,assign) NSInteger locationView;//当前scrollView显示初始位置
 
 @end

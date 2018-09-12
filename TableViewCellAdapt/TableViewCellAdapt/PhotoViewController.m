@@ -7,7 +7,7 @@
 //
 
 #import "PhotoViewController.h"
-#import <AudioToolbox/AudioToolbox.h>
+#import <AudioToolbox/AudioToolbox.h>//系统振动的类库
 
 //1.获取屏幕宽度与高度
 #define SCREEN_WIDTH   [UIScreen mainScreen].bounds.size.width
@@ -15,9 +15,9 @@
 
 @interface PhotoViewController ()<UIScrollViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (nonatomic,strong) UIScrollView *scrollerView;
+@property (nonatomic,strong) UIScrollView *scrollerView;//滑动视图
 
-@property (nonatomic,assign) NSInteger index;
+@property (nonatomic,assign) NSInteger index;//滑动的位置
 
 
 @end
@@ -58,11 +58,12 @@
         
         //图片长按手势
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
-        longPress.minimumPressDuration = 1.0f;
+        longPress.minimumPressDuration = 1.0f;//设置长按响应事件(单位是秒)
         [imageView addGestureRecognizer:longPress];
         
         [self.scrollerView addSubview:imageView];
     }
+    self.scrollerView.contentOffset = CGPointMake(SCREEN_WIDTH * self.locationView, 0);
     [self.view addSubview:self.scrollerView];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -76,7 +77,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
--(void)deleat
+-(void)deleat//点击删除弹出提示框(是否确定删除)
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示"
                                                                    message:@"是否要删除当前图片?"
@@ -84,6 +85,7 @@
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"是" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action) {
+                                                              //确定删除后发起通知通知列表页面删除图片数据
                                                               [[NSNotificationCenter defaultCenter] postNotificationName:@"deleat" object:self userInfo:@{@"value":self.imageArray[self.index]}];
                                                               [self.navigationController popViewControllerAnimated:YES];
                                                           }];
@@ -100,32 +102,37 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+//scrollView滑动后修改title指示文字
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     self.index = scrollView.contentOffset.x / SCREEN_WIDTH ;
     self.title = [NSString stringWithFormat:@"%ld/%lu",self.index+ 1,(unsigned long)self.imageArray.count];
 }
 
+//图片轻点手势事件
 -(void)cilck
 {
     [self changeState];
 }
 
+//设置导航栏和状态栏的隐藏与否
 -(void)changeState
 {
     self.navigationController.navigationBar.hidden = !self.navigationController.navigationBar.isHidden ;
     [[UIApplication sharedApplication] setStatusBarHidden:self.navigationController.navigationBar.isHidden withAnimation:UIStatusBarAnimationNone];
-    self.scrollerView.contentOffset = CGPointMake(self.scrollerView.contentOffset.x, 0);
-    self.scrollerView.scrollEnabled = self.navigationController.navigationBar.isHidden;
+    self.scrollerView.contentOffset = CGPointMake(self.scrollerView.contentOffset.x, 0);//防止当导航栏和状态栏显示时scrollView视图整体下移的效果
+    self.scrollerView.scrollEnabled = self.navigationController.navigationBar.isHidden;//在导航栏和状态栏显示时关闭scrollView的滑动事件
 }
 
+//图片长按手势事件
 -(void)longPress:(UILongPressGestureRecognizer *)longPress
 {
-    if (longPress.state == UIGestureRecognizerStateBegan) {
-        if (self.navigationController.navigationBar.isHidden == NO) {
+    if (longPress.state == UIGestureRecognizerStateBegan) {//判断长按当前所处的状态
+        if (self.navigationController.navigationBar.isHidden == NO) {//判断当前导航栏和状态栏是否显示
             [self changeState];
         }
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);//调用系统振动效果
+        //创建选择窗口
         UIActionSheet * actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"分享",@"XXXX", nil];
         actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
         [actionSheet showInView:self.view];
