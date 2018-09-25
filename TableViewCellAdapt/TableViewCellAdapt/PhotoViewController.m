@@ -36,9 +36,9 @@
     self.view.backgroundColor = [UIColor blackColor];
     self.title =  [NSString stringWithFormat:@"1/%lu",(unsigned long)self.imageArray.count];
     self.navigationController.navigationBar.translucent = YES;//设置导航栏透明度
-    self.scrollerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT  )];
+    self.scrollerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREENH_HEIGHT )];
     self.scrollerView.backgroundColor = [UIColor blackColor];
-    self.scrollerView.contentSize = CGSizeMake(SCREEN_WIDTH * self.imageArray.count, SCREENH_HEIGHT  );
+    self.scrollerView.contentSize = CGSizeMake(SCREEN_WIDTH * self.imageArray.count, SCREENH_HEIGHT );
     self.scrollerView.delegate = self;
     self.scrollerView.pagingEnabled = YES;
     
